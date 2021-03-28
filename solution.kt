@@ -1,18 +1,36 @@
 private object Solution1 {
-    private fun countUpAndDown(n: Int): List<Int> {
-        val size = (n * 2) + 1
 
-        return List(size) {
-            when {
-                it <= n -> it
-                else -> (n * 2) - it
-            }
+    fun countUniqueValues(list: List<Int>): Int {
+        val map = mutableMapOf<Int, Int>()
+
+        list.forEach {
+            var value = map.getOrDefault(it, 0)
+            value++
+            map[it] = value
         }
+        return map.count()
+    }
+
+    fun printNumber(n: Int): List<Int> {
+        return (n downTo 1).toList()
     }
 }
 
 private object Solution2 {
-    private fun countUpAndDown(n: Int): List<Int> {
-        return (0 until n) + (n downTo 0)
+    fun countUniqueValues(list: List<Int>): Int {
+        return list.toSet().size
     }
 }
+
+private object Solution3 {
+    fun countUniqueValues(list: List<Int>): Int {
+        return list.distinct().size
+    }
+}
+
+private object Solution4 {
+    fun countUniqueValues(list: List<Int>): Int {
+        return list.groupBy { it }.size
+    }
+}
+
